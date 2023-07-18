@@ -3,19 +3,24 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { AboutComponent } from './about/about.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MyprofileComponent,
-    AboutComponent
+    AboutComponent,
+    ProjectsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports:[ DashboardComponent,
     MyprofileComponent,
-    AboutComponent]
+    AboutComponent,
+  ProjectsComponent]
 })
 export class AdminModule { }
