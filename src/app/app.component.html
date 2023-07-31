@@ -7,16 +7,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page"  routerLink="dashboard">Dashboard</a>
+        <li class="nav-item" *ngIf="loginService.currentUserName!=null">
+          <a class="nav-link active text-white"  routerLink="dashboard">Dashboard</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" routerLink="about">About</a>
+        <li class="nav-item" *ngIf="loginService.currentUserName!=null">
+          <a class="nav-link  text-white"  routerLink="about">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" routerLink="projects">Projects</a>
+        <li class="nav-item" *ngIf="loginService.currentUserName!=null">
+          <a class="nav-link  text-white"  routerLink="projects">Projects</a>
         </li>
- 
+        <li class="nav-item" *ngIf="loginService.currentUserName!=null">
+          <a class="nav-link  text-white" >{{loginService.currentUserName}}</a>
+        </li>
+        <li class="nav-item" *ngIf="loginService.currentUserName!=null">
+          <a class="nav-link  text-white" href="#"  (click)="loginService.logout">Logout</a>
+        </li>
+        <li class="nav-item" *ngIf="loginService.currentUserName == null"> 
+          <a class="nav-link  text-white"  routerLink="Login" (click)="loginService.Login">Logout</a>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

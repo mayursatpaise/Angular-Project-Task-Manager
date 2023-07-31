@@ -24,11 +24,14 @@ export class ProjectsComponent {
   }
   
   ngOnInit() {
-    this.projectService.getAllProject().subscribe(
-      (response:Project[]) => {
+    this.projectService.getAllProject().subscribe({
+     next: (response:Project[]) => {
         this.projects = response;
-       }
-    );
+      },
+      error: (err) => {
+        console.log(err,"pc err-->")
+      }
+    });
   }
   onSaveClick() {
     this.projectService.insertProject(this.newProject).subscribe(

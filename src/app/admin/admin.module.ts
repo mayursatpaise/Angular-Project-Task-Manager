@@ -5,6 +5,7 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
 import { AboutComponent } from './about/about.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     MyprofileComponent,
     AboutComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+
 import { Project } from './project';
 @Injectable({
   providedIn: 'root'
@@ -11,8 +14,24 @@ export class ProjectsService {
 
   }
 
-  getAllProject():Observable<Project[]> {
-    return this.httpClient.get<Project[]>(this.url + 'api/projects', {responseType:"json"});
+  getAllProject(): Observable<Project[]> {
+    
+    var currentUser = { token: "" };
+    var headers = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer");
+    if (sessionStorage.getItem('currentUser') != null) {
+      currentUser = JSON.parse(sessionStorage['currentUser']);
+      headers = headers.set("Authorization", "Bearer" + currentUser.token);
+    }
+    return this.httpClient.get<Project[]>(this.url + 'api/projects', { responseType: "json" })
+      .pipe(map(
+        (data: Project[]) => {
+         
+      for (var j = 0; j < data.length; j++){
+        data[j].teamSize = data[j].teamSize * 100;
+      }
+       return data ;
+    }))
   }
 
   insertProject(newProject:Project): Observable<Project>{
